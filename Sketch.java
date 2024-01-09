@@ -1,14 +1,16 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Sketch extends PApplet {
-	
+
+  int state = 0;	
+  PImage backgroundImage;
 	
   /**
    * Called once at the beginning of execution, put your size all in this method
    */
   public void settings() {
-	// put your size call here
-    size(400, 400);
+    size(900, 500);
   }
 
   /** 
@@ -16,21 +18,56 @@ public class Sketch extends PApplet {
    * values here i.e background, stroke, fill etc.
    */
   public void setup() {
-    background(210, 255, 173);
+    backgroundImage = loadImage("catquest.jpg");
   }
 
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
   public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
+    background(210, 255, 173);
+    image(backgroundImage, 0, 0, width, height);
 
-    stroke(255);
-    line(50, 125, 70, 50);  
+    textAlign(CENTER, CENTER);
+    textSize(80);
+    rect(450, 90, 500, 100);
+    fill(255);
+    text("CATQUEST", width / 2, 80);
+
+    textSize(30);
+    drawButton("Play", width / 2, 200);
+    drawButton("Controls", width / 2, 300);
+    drawButton("Attacks", width / 2, 400);
+    
   }
-  
-  // define other methods down here.
+
+  void drawButton(String label, float x, float y) {
+    float buttonWidth = 200;
+    float buttonHeight = 50;
+    float cornerRadius = 10;
+
+    if (mouseX > x - buttonWidth / 2 && mouseX < x + buttonWidth / 2 && mouseY > y - buttonHeight / 2 && mouseY < y + buttonHeight / 2) {
+      fill(150);
+      if (mousePressed) {
+        handleButtonClick(label);
+      }
+    } else {
+        fill(200);
+    }
+
+    rectMode(CENTER);
+    rect(x, y, buttonWidth, buttonHeight, cornerRadius);
+    fill(0);
+    text(label, x, y);
+  }
+
+  void handleButtonClick(String label) {
+    if (label == "Controls") {
+      state = 1;
+    }
+    if (label == "Attacks") {
+      state = 2;
+    }
+    if (label == "Play") {
+      state = 3;
+    }
+  }
+
 }
