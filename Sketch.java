@@ -3,7 +3,8 @@ import processing.core.PImage;
 
 public class Sketch extends PApplet {
 
-  int state = 0;	
+  int state = 0;
+  int lives = 0;	
   PImage backgroundImage;
 	
   /**
@@ -69,7 +70,34 @@ public class Sketch extends PApplet {
       text("\tSPECIAL - Sends an even more devastating blast, though it doesn’t pierce.", 450, 380);
       text("NINE LIVES - Can heal 1 hp by spending 5 mice.", 450, 450);
     }
-    
+
+    if (state == 3) {
+      background(0);
+      drawButton("Back", 70, 50, 100, 50);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text("Choose a Difficulty", 450, 80);
+      text("This will determine your life count", 450, 150);
+      textSize(20);
+      drawButton("Easy", 450, 250, 200, 50);
+      drawButton("Normal", 450, 340, 200, 50);
+      drawButton("Hard", 450, 430, 200, 50);
+    }
+
+    if (state == 4) {
+      background(0);
+      drawButton("Back", 70, 50, 100, 50);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text("Choose your Bossfight", 450, 80);
+      textSize(20);
+      drawButton("Tutorial Tabby", 450, 180, 250, 50);
+      drawButton("Script Kitty", 450, 250, 250, 50);
+      drawButton("Clockpurrk", 450, 320, 250, 50);
+      drawButton("The Mainframe", 450, 390, 250, 50);
+    }
   }
 
   void drawButton(String label, float x, float y, float buttonWidth, float buttonHeight) {
@@ -95,14 +123,38 @@ public class Sketch extends PApplet {
     if (label == "Back") {
       state = 0;
     }
-    if (label == "Controls") {
+    else if (label == "Controls") {
       state = 1;
     }
-    if (label == "Attacks") {
+    else if (label == "Attacks") {
       state = 2;
     }
-    if (label == "Play") {
+    else if (label == "Play") {
       state = 3;
+    }
+    else if (label == "Easy") {
+      lives = 10;
+      state = 4;
+    }
+    else if (label == "Normal") {
+      lives = 6;
+      state = 4;
+    }
+    else if (label == "Hard") {
+      lives = 3;
+      state = 4;
+    }
+    else if (label == "Tutorial Tabby") {
+      state = 5;
+    }
+    else if (label == "Script Kitty") {
+      state = 6;
+    }
+    else if (label == "Clockpurrk") {
+      state = 7;
+    }
+    else if (label == "The Mainframe") {
+      state = 8;
     }
   }
 
