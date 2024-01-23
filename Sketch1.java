@@ -5,10 +5,6 @@ public class Sketch1 extends PApplet {
 
   PImage catimg;
   PImage drone;
-  PImage swift;
-  PImage swiftAlt;
-  PImage miniSwift;
-  PImage swiftOrb;
 
   float playerX = 100f;
   float playerY = 410f;
@@ -29,16 +25,9 @@ public class Sketch1 extends PApplet {
 
   int bossX = 600;
   int bossY = 200;
-  boolean facingLeft = true;
   int bossMovement = 5;
-  float bossHealth = 100;
+  float bossHealth = 200;
   boolean recentDamage = false;
-
-  float proj1X = 0;
-  float proj1Y = 0;
-  float proj2X = 0;
-  float proj2Y = 0;
-  boolean warning = false;
 
   int phase = 0;
 
@@ -49,24 +38,11 @@ public class Sketch1 extends PApplet {
   public void setup() {
     catimg = loadImage("catcharacter.png");
     drone = loadImage("catDrone.png");
-    swift = loadImage("swiftRight.png");
-    swiftAlt = loadImage("swiftLeft.png");
-    miniSwift = loadImage("birdMinion.png");
-    swiftOrb = loadImage("swiftOrb.png");
   }
 
   public void draw() {
-    background(255);
+    background(173, 216, 230);
     image(catimg, playerX, playerY, 60, 90);
-    if (facingLeft == true) {
-      bossX = 600;
-      bossY = 200;
-      image(swift, bossX, bossY, 300, 300);
-    } else {
-      bossX = 0;
-      bossY = 200;
-      image(swiftAlt, bossX, bossY, 300, 300);
-    }
 
     fill(255, 255, 0);
     rect(15, 10, 80, 30);
@@ -97,62 +73,7 @@ public class Sketch1 extends PApplet {
     }
     
     if (phase == 2) {
-      
-      if (frameCount % 240 == 0) {
-        if (facingLeft) {
-          proj1X = bossX;
-          proj1Y = bossY + 200;
-          proj2X = bossX + 50;
-          proj2Y = bossY + 250;
-        } else {
-          proj1X = bossX + 50;
-          proj1Y = bossY + 200;
-          proj2X = bossX + 100;
-          proj2Y = bossY + 250;
-        }
-      }
-
-      if (proj1X != 0 && proj1Y != 0) {
-        image(miniSwift, proj1X, proj1Y, 50, 50);
-        if (facingLeft == true) {
-          proj1X -= 10;
-        } else {
-          proj1X += 10;
-        }
-      }
-
-      if (proj2X != 0 && proj2Y != 0) {
-        if (facingLeft == true) {
-          proj2X -= 3;
-        } else {
-          proj2X += 3;
-        }
-        image(swiftOrb, proj2X, proj2Y, 40, 40);
-      }
-
-      if (proj1X > width || proj1X < 0 || proj1Y > height || proj1Y < 0) {
-        proj1X = 0;
-        proj1Y = 0;
-      }
-
-      if (frameCount % 630 == 0) {
-        warning = true;
-      }
-
-      if (warning == true) {
-        fill(0);
-        textSize(20);
-        text("WARNING", 800, 0);
-      }
-
-      if (frameCount % 750 == 0) {
-        if (facingLeft == true) {
-          facingLeft = false;
-        } else {
-          facingLeft = true;
-        }
-        warning = false;
-      }
+      // CODE
       
       if (lives == 0) {
         background(255);
@@ -179,14 +100,6 @@ public class Sketch1 extends PApplet {
       }
 
       if (checkCollision(playerX, playerY, bossX, bossY, 200) && recentDamage == false) {
-        playerDamage();
-      }
-
-      if (checkCollision(playerX, playerY, proj2X, proj2Y, 200) && recentDamage == false) {
-        playerDamage();
-      }
-
-      if (checkCollision(playerX, playerY, proj1X, proj1Y, 45) && recentDamage == false) {
         playerDamage();
       }
 

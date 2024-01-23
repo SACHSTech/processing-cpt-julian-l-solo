@@ -7,7 +7,6 @@ public class Sketch2 extends PApplet {
   PImage drone;
   PImage Cboss;
   PImage codeUmbrella;
-  PImage cBackground;
 
   float playerX = 100f;
   float playerY = 410f;
@@ -47,12 +46,10 @@ public class Sketch2 extends PApplet {
     drone = loadImage("catDrone.png");
     Cboss = loadImage("C.png");
     codeUmbrella = loadImage("binary_umbrella.png");
-    cBackground = loadImage("cVector.jpg");
   }
 
   public void draw() {
     background(255);
-    image(cBackground, 0, 0, width, height);
     image(catimg, playerX, playerY, 60, 90);
     image(Cboss, bossX, bossY, 125, 125);
     image(codeUmbrella, umbrellaX, umbrellaY, 100, 100);
@@ -62,7 +59,7 @@ public class Sketch2 extends PApplet {
     fill(0);
     textAlign(LEFT, TOP);
     textSize(18);
-    text("LIVES: " + bossHealth, 20, 15);
+    text("LIVES: " + lives, 20, 15);
 
     if (phase == 0) {
       fill(0);
