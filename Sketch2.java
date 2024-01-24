@@ -59,7 +59,7 @@ public class Sketch2 extends PApplet {
     fill(0);
     textAlign(LEFT, TOP);
     textSize(18);
-    text("LIVES: " + lives, 20, 15);
+    text("LIVES: " + bossHealth, 20, 15);
 
     if (phase == 0) {
       fill(0);
